@@ -2,6 +2,9 @@ package main
 
 import (
 	"log"
+	"os"
+	"os/signal"
+	"syscall"
 
 	"main/ai"
 	"main/fungsi"
@@ -14,8 +17,6 @@ import (
 	"github.com/joho/godotenv"
 
 	"main/models"
-
-	"os"
 
 	"time"
 
@@ -152,4 +153,9 @@ func main() {
 	go telegram.StartBot(db)
 	ai.InitAi()
 	// wa.KonekWa(db)
+
+	// blokir main goroutine agar server & bot tetap berjalan sampai diberhentikan
+	c := make(chan os.Signal, 1)
+	signal.Notify(c, os.Interrupt, syscall.SIGTERM)
+	<-c
 }
