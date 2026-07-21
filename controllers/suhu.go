@@ -16,6 +16,10 @@ type StrukturSuhu struct {
 	Suhu   float32 `binding:"required"`
 }
 
+type StrukturSuhuHapus struct {
+	Id uint `binding:"required"`
+}
+
 // Tambahkan ini
 func Tampil(c *gin.Context) {
 	//ambil koneksi variabel db dari main
@@ -129,7 +133,7 @@ func Hapus(c *gin.Context) {
 	db := c.MustGet("db").(*gorm.DB)
 	//membuat variabel data Suhu dengan struktur suhu
 	//dan menangkap data dari request
-	var dataSuhu StrukturSuhu
+	var dataSuhu StrukturSuhuHapus
 	if err := c.ShouldBindJSON(&dataSuhu); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"status":    false,

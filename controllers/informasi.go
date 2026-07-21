@@ -16,6 +16,10 @@ type StrukturInformasi struct {
 	UrlDokumen string `binding:"required"`
 }
 
+type StrukturInformasiHapus struct {
+	Id uint `binding:"required"`
+}
+
 // Tambahkan ini
 func InformasiTampil(c *gin.Context) {
 	//ambil koneksi variabel db dari main
@@ -130,7 +134,7 @@ func InformasiHapus(c *gin.Context) {
 	db := c.MustGet("db").(*gorm.DB)
 	//membuat variabel data Informasi dengan struktur informasi
 	//dan menangkap data dari request
-	var dataInformasi StrukturInformasi
+	var dataInformasi StrukturInformasiHapus
 	if err := c.ShouldBindJSON(&dataInformasi); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"status":    false,

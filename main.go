@@ -5,6 +5,7 @@ import (
 
 	"main/ai"
 	"main/fungsi"
+	"main/telegram"
 	"main/wa"
 
 	"github.com/gin-gonic/gin"
@@ -147,6 +148,7 @@ func main() {
 	port := os.Getenv("PORT")
 	go r.Run(":" + port)
 
+	go telegram.StartBot(db)
 	ai.InitAi()
 	wa.KonekWa(db)
 }
