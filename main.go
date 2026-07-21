@@ -6,7 +6,8 @@ import (
 	"main/ai"
 	"main/fungsi"
 	"main/telegram"
-	"main/wa"
+
+	// "main/wa"
 
 	"github.com/gin-gonic/gin"
 
@@ -150,5 +151,5 @@ func main() {
 
 	go telegram.StartBot(db)
 	ai.InitAi()
-	wa.KonekWa(db)
+	// wa.KonekWa(db)
 }
